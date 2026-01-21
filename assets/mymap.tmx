@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="28">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="31">
  <tileset firstgid="1" name="ocean-plants" tilewidth="32" tileheight="32" tilecount="16" columns="4">
   <image source="ocean-plants.png" width="128" height="128"/>
  </tileset>
@@ -84,8 +84,16 @@
   <object id="14" gid="18" x="854.667" y="580" width="64" height="64"/>
   <object id="15" gid="18" x="388" y="821.333" width="64" height="64"/>
   <object id="16" gid="18" x="462.667" y="821.333" width="64" height="64"/>
-  <object id="17" gid="19" x="780" y="120" width="64" height="64"/>
-  <object id="18" gid="19" x="114.667" y="664" width="64" height="64"/>
+  <object id="17" gid="19" x="780" y="120" width="64" height="64">
+   <properties>
+    <property name="message" value="Denk an die Seesterne!"/>
+   </properties>
+  </object>
+  <object id="18" gid="19" x="114.667" y="664" width="64" height="64">
+   <properties>
+    <property name="message" value="Sammele alle Seesterne!"/>
+   </properties>
+  </object>
   <object id="19" gid="17" x="889.333" y="913.333" width="64" height="64"/>
   <object id="20" gid="17" x="918.667" y="401.333" width="64" height="64"/>
   <object id="21" gid="17" x="818.667" y="504" width="64" height="64"/>
@@ -95,5 +103,16 @@
   <object id="25" gid="17" x="169.333" y="485.333" width="64" height="64"/>
   <object id="26" gid="17" x="354.667" y="938.667" width="64" height="64"/>
   <object id="27" gid="17" x="572" y="610.667" width="64" height="64"/>
+  <object id="28" x="106.667" y="629.167" width="72" height="19">
+   <text wrap="1">Hallo Welt</text>
+  </object>
+  <object id="29" x="774.667" y="85.1667" width="72" height="19">
+   <text wrap="1">Hallo Welt</text>
+  </object>
+  <object id="30" x="70.6667" y="870.667" width="118.667" height="68">
+   <properties>
+    <property name="name" value="start"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
