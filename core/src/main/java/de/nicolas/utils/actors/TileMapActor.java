@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import de.nicolas.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TileMapActor extends Actor {
 
@@ -94,6 +96,28 @@ public class TileMapActor extends Actor {
                     continue;
                 }
                 MapProperties properties = object.getProperties();
+
+                TiledMapTileMapObject tmtmo = (TiledMapTileMapObject) object;
+                TiledMapTile t = tmtmo.getTile();
+                MapProperties defaultProps = t.getProperties();
+
+                if (defaultProps.containsKey("name") && defaultProps.get("name").equals(propertyName)){
+                    list.add(object);
+                }
+
+                Iterator<String> propertyKeys = defaultProps.getKeys();
+
+                while (propertyKeys.hasNext()){
+                    String key = propertyKeys.next();
+
+                    if (properties.containsKey(key)){
+                        continue;
+                    }
+                    else {
+                        Object value = defaultProps.get(key);
+                        properties.put(key, value);
+                    }
+                }
             }
         }
         return list;
