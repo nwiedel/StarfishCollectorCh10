@@ -4,6 +4,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -36,6 +38,7 @@ public class LevelScreen extends BaseScreen {
     private DialogBox dialogBox;
 
     private float audioVolume;
+    private float musicVolume;
     private Sound waterDrop;
     private Music instrumental;
     private Music oceanSurf;
@@ -44,6 +47,26 @@ public class LevelScreen extends BaseScreen {
     public void initialize() {
 
         TileMapActor tma = new TileMapActor("assets/mymap.tmx", mainStage);
+
+        for (MapObject object : tma.getTileList("Starfish")){
+            MapProperties properties = object.getProperties();
+            new Starfish((float)properties.get("x"), (float)properties.get("y"), mainStage);
+        }
+
+        for (MapObject object : tma.getTileList("Rock")){
+            MapProperties properties = object.getProperties();
+            new Rock((float)properties.get("x"), (float)properties.get("y"), mainStage);
+        }
+
+        for (MapObject object : tma.getTileList("Sign")){
+            MapProperties properties = object.getProperties();
+            Sign sign =new Sign((float)properties.get("x"), (float)properties.get("y"), mainStage);
+            sign.setText((String)properties.get("message"));
+        }
+
+        MapObject startPoint = tma.getRectangleList("start").get(0);
+        MapProperties properties = startPoint.getProperties();
+        turtle = new Turtle((float) properties.get("x"), (float) properties.get("y"), mainStage);
 
         win = false;
 
@@ -115,9 +138,10 @@ public class LevelScreen extends BaseScreen {
         instrumental = Gdx.audio.newMusic(Gdx.files.internal("assets/Master_of_the_Feast.ogg"));
         oceanSurf = Gdx.audio.newMusic(Gdx.files.internal("assets/Ocean_Waves.ogg"));
 
-        audioVolume = 1.00F;
+        audioVolume = 0.3F;
+        musicVolume = 0.2f;
         instrumental.setLooping(true);
-        instrumental.setVolume(audioVolume);
+        instrumental.setVolume(musicVolume);
         instrumental.play();
         oceanSurf.setLooping(true);
         oceanSurf.setVolume(audioVolume);
